@@ -44,8 +44,8 @@ export interface Submission {
   status: SubmissionStatus;
   aiScore: number;
   aiAnalysis?: string;
-  estimatedArea: number; // in hectares
-  estimatedCarbon: number; // in tons
+  estimatedArea: number; 
+  estimatedCarbon: number; 
   verifierComments?: string;
   creditId?: string;
 }
