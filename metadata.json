@@ -1,0 +1,8 @@
+{
+  "name": "BlueCarbon MRV - Digital Ecosystem Registry",
+  "description": "A transparent, AI-driven digital MRV system for monitoring, reporting, and verifying blue carbon restoration projects (mangroves and seagrass) to generate trusted carbon credits.",
+  "requestFramePermissions": [
+    "camera",
+    "geolocation"
+  ]
+}
