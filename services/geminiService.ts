@@ -60,7 +60,7 @@ export const analyzeBlueCarbonImage = async (base64Image: string, ecosystemType:
 };
 
 /**
- * Chatbot service for general Blue Carbon and project inquiries.
+ * Chatbot service with Google Maps and Search grounding.
  */
 export const getChatbotResponse = async (userMessage: string, chatHistory: {role: 'user' | 'model', parts: {text: string}[]}[]) => {
   try {
@@ -74,14 +74,28 @@ export const getChatbotResponse = async (userMessage: string, chatHistory: {role
         - Carbon Credits are priced at $15 per ton of CO2 (tCO2e).
         - Our revenue model: 90% goes directly to local coastal families/fishermen, 10% is the network maintenance fee.
         - We use satellite imagery and AI (Gemini) to verify biomass density.
-        - Mangroves sequester up to 4x more carbon than tropical rainforests.
-        - Seagrass meadows are responsible for 10% of the ocean's total carbon storage.
+        - Use Google Maps tools to find specific coastal projects or restoration zones if asked.
+        - If citing Google Search or Maps data, include URLs found in grounding metadata.
         Keep responses concise, professional, and slightly futuristic.`,
+        tools: [{ googleSearch: {} }, { googleMaps: {} }],
         temperature: 0.7,
-        maxOutputTokens: 250,
+        maxOutputTokens: 500,
       }
     });
-    return response.text || "I'm processing the data stream. Please try again.";
+
+    // Extract grounding URLs if present
+    const groundingChunks = response.candidates?.[0]?.groundingMetadata?.groundingChunks;
+    let urlLinks = "";
+    if (groundingChunks) {
+      const urls = groundingChunks
+        .map((chunk: any) => chunk.web?.uri || chunk.maps?.uri)
+        .filter(Boolean);
+      if (urls.length > 0) {
+        urlLinks = "\n\nSources:\n" + Array.from(new Set(urls)).map(u => `- ${u}`).join('\n');
+      }
+    }
+
+    return (response.text || "I'm processing the data stream. Please try again.") + urlLinks;
   } catch (error) {
     console.error("Chatbot error:", error);
     return "The network is experiencing high latency. Please reconnect shortly.";
