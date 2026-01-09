@@ -9,17 +9,32 @@ export enum UserRole {
 export enum SubmissionStatus {
   PENDING = 'PENDING',
   AI_VERIFIED = 'AI_VERIFIED',
-  APPROVED = 'APPROVED',
+  NGO_APPROVED = 'NGO_APPROVED', // New: Passed NGO review
+  FIELD_CHECK_REQUIRED = 'FIELD_CHECK_REQUIRED', // New: Flagged for site visit
+  APPROVED = 'APPROVED', // Final: Admin/Gov Issued
   REJECTED = 'REJECTED'
 }
 
 export enum CreditStatus {
+  PENDING_ISSUANCE = 'PENDING_ISSUANCE', // New: Waiting for Admin
   AVAILABLE = 'AVAILABLE',
+  FROZEN = 'FROZEN', // New: Compliance hold
   SOLD = 'SOLD',
   RETIRED = 'RETIRED'
 }
 
 export type Language = 'en' | 'es' | 'hi' | 'id';
+
+export interface AuditLog {
+  id: string;
+  timestamp: string;
+  userId: string;
+  userName: string;
+  role: UserRole;
+  action: string;
+  targetId: string;
+  details: string;
+}
 
 export interface User {
   id: string;
@@ -27,6 +42,7 @@ export interface User {
   name: string;
   role: UserRole;
   organization?: string;
+  region?: string;
 }
 
 export interface Submission {
@@ -47,7 +63,10 @@ export interface Submission {
   estimatedArea: number; 
   estimatedCarbon: number; 
   verifierComments?: string;
+  adminComments?: string;
   creditId?: string;
+  ngoId?: string;
+  ngoName?: string;
 }
 
 export interface CarbonCredit {
@@ -61,12 +80,14 @@ export interface CarbonCredit {
   status: CreditStatus;
   mintedAt: string;
   transactionHash: string;
+  issuedBy?: string; // Admin name
 }
 
 export interface AppState {
   currentUser: User | null;
   submissions: Submission[];
   credits: CarbonCredit[];
+  auditLogs: AuditLog[];
   language: Language;
   userCount: number;
 }

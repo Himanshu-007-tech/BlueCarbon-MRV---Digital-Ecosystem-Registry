@@ -4,22 +4,119 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BlueCarbon MRV</title>
+    <title>BlueCarbon MRV | Ocean Trust Network</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <style>
-      .leaflet-container { width: 100%; height: 100%; }
-      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-      body { font-family: 'Inter', sans-serif; }
+      @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@400;700&display=swap');
       
-      /* Simple fade-in animation for the landing page */
-      .animate-fade-in {
-        animation: fadeIn 1.2s ease-out forwards;
+      :root {
+        --ocean-deep: #001219;
+        --ocean-dark: #001e2b;
+        --ocean-mid: #003049;
+        --ocean-light: #0077b6;
+        --marine-teal: #48cae4;
+        --marine-blue: #00b4d8;
+        --sea-foam: #ade8f4;
       }
+
+      body { 
+        font-family: 'Inter', sans-serif; 
+        background-color: var(--ocean-deep);
+        color: white;
+        margin: 0;
+        overflow-x: hidden;
+      }
+
+      h1, h2, h3, h4, .font-heading {
+        font-family: 'Space Grotesk', sans-serif;
+        text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      }
+
+      /* Immersive Seawater Background */
+      .ocean-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background: radial-gradient(circle at 50% 10%, #005f73 0%, var(--ocean-deep) 80%);
+        overflow: hidden;
+      }
+
+      /* Dynamic Light Rays - Caustic Water Effect */
+      .light-rays {
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: repeating-linear-gradient(
+          115deg,
+          transparent 0%,
+          rgba(72, 202, 228, 0.02) 2%,
+          rgba(72, 202, 228, 0.05) 4%,
+          transparent 6%
+        );
+        pointer-events: none;
+        animation: raySway 25s ease-in-out infinite alternate;
+      }
+
+      @keyframes raySway {
+        from { transform: rotate(-8deg) scale(1); opacity: 0.6; }
+        to { transform: rotate(8deg) scale(1.1); opacity: 1; }
+      }
+
+      /* Shimmering Ethereal Bubbles */
+      .bubble {
+        position: absolute;
+        bottom: -100px;
+        background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.2), transparent);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        pointer-events: none;
+        animation: bubbleFloat var(--duration) linear infinite;
+        box-shadow: 0 0 15px rgba(0, 180, 216, 0.2);
+      }
+
+      @keyframes bubbleFloat {
+        0% { transform: translateY(0) translateX(0) scale(0.4); opacity: 0; }
+        20% { opacity: 0.4; }
+        80% { opacity: 0.4; }
+        100% { transform: translateY(-120vh) translateX(60px) scale(1.3); opacity: 0; }
+      }
+
+      /* Sea-Glass Glassmorphism */
+      .glass {
+        background: rgba(0, 30, 43, 0.65);
+        backdrop-filter: blur(40px);
+        -webkit-backdrop-filter: blur(40px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+      }
+
+      .glass-card {
+        background: rgba(0, 50, 70, 0.2);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .marine-glow {
+        box-shadow: 0 0 40px rgba(0, 180, 216, 0.3);
+      }
+
+      .animate-fade-in { animation: fadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
       @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
+        from { opacity: 0; transform: translateY(20px); }
         to { opacity: 1; transform: translateY(0); }
       }
+
+      /* Custom Scrollbar for Sea UI */
+      .custom-scrollbar::-webkit-scrollbar { width: 5px; }
+      .custom-scrollbar::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.2); }
+      .custom-scrollbar::-webkit-scrollbar-thumb { background: var(--ocean-light); border-radius: 12px; }
     </style>
   <script type="importmap">
 {
@@ -39,9 +136,19 @@
 }
 </script>
 </head>
-  <body class="bg-slate-50 text-slate-900">
+  <body>
+    <div class="ocean-bg">
+      <div class="light-rays"></div>
+      <div class="bubble" style="left: 10%; width: 20px; height: 20px; --duration: 15s;"></div>
+      <div class="bubble" style="left: 25%; width: 45px; height: 45px; --duration: 20s;"></div>
+      <div class="bubble" style="left: 40%; width: 15px; height: 15px; --duration: 18s;"></div>
+      <div class="bubble" style="left: 60%; width: 35px; height: 35px; --duration: 25s;"></div>
+      <div class="bubble" style="left: 80%; width: 25px; height: 25px; --duration: 22s;"></div>
+      <div class="bubble" style="left: 90%; width: 10px; height: 10px; --duration: 12s;"></div>
+      <div class="bubble" style="left: 15%; width: 12px; height: 12px; --duration: 30s;"></div>
+      <div class="bubble" style="left: 55%; width: 18px; height: 18px; --duration: 28s;"></div>
+    </div>
     <div id="root"></div>
-    <!-- Entry point for the application -->
     <script type="module" src="./index.tsx"></script>
   </body>
 </html>
