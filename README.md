@@ -2,6 +2,10 @@
 
 A transparent, AI-powered platform for verifying mangrove and seagrass restoration and generating carbon credits.
 
+webapp prototype link - carbon-system-mrv.netlify.app/
+
+demo video - https://www.youtube.com/watch?v=Lob8dTyjctY
+
 📌 Overview
 
 Blue carbon ecosystems such as mangroves and seagrass meadows are among the most effective natural carbon sinks. However, India and many developing nations lack a transparent, low-cost, community-accessible MRV (Monitoring, Reporting, Verification) system to verify restoration activities and convert them into carbon credits.
