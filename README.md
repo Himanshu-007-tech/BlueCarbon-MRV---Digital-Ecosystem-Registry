@@ -2,7 +2,7 @@
 
 A transparent, AI-powered platform for verifying mangrove and seagrass restoration and generating carbon credits.
 
-webapp prototype link - carbon-system-mrv.netlify.app/
+webapp prototype link - https://carbon-system-mrv.netlify.app/
 
 demo video - https://www.youtube.com/watch?v=Lob8dTyjctY
 
