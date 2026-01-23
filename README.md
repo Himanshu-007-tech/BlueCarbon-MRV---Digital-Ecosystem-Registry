@@ -43,3 +43,29 @@ Carbon credits are generated from verified restoration
 Corporates purchase credits as ESG / Net-Zero offsets
 
 Payments reach fishermen (mock for MVP)
+
+🌍 Future Enhancements
+
+Real blockchain deployment (Polygon)
+
+Custom-trained model for mangrove/seagrass detection
+
+Drone + satellite NDVI integration
+
+Offline-enabled mobile app
+
+Live carbon stock estimation
+
+Marketplace payments using UPI / digital wallets
+
+✨ Why This Project Matters
+
+Empowers fishermen & coastal communities
+
+Supports India’s climate & blue economy goals
+
+Ensures transparency in carbon markets
+
+Combines AI, environment, and technology
+
+Highly scalable for global adoption
