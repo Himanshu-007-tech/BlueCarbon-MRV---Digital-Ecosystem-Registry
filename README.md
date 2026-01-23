@@ -1,20 +1,45 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+🌿 Blockchain-Based Blue Carbon MRV System
 
-# Run and deploy your AI Studio app
+A transparent, AI-powered platform for verifying mangrove and seagrass restoration and generating carbon credits.
 
-This contains everything you need to run your app locally.
+📌 Overview
 
-View your app in AI Studio: https://ai.studio/apps/drive/14oMEGR4sTj3ewXm5Bm40Wtf_xStQdjyq
+Blue carbon ecosystems such as mangroves and seagrass meadows are among the most effective natural carbon sinks. However, India and many developing nations lack a transparent, low-cost, community-accessible MRV (Monitoring, Reporting, Verification) system to verify restoration activities and convert them into carbon credits.
 
-## Run Locally
+This project solves that problem by building a full-stack digital MRV system that integrates:
 
-**Prerequisites:**  Node.js
+✔ AI-based image verification
+✔ Geo-tagged data collection
+✔ NGO & government approval workflows
+✔ Blockchain-inspired tamper-proof registry
+✔ Tokenized carbon credit generation
+✔ Corporate carbon offset marketplace
+✔ Multi-language support
+✔ Google Maps integration
 
+Built as a hackathon-ready MVP with real-world potential for climate impact.
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+🎯 Features
+👤 User Roles
+Role	Capabilities
+Fisherman / Community User	Upload restoration images, auto GPS tagging, track status, view earnings
+NGO Verifier	Review AI results, approve/reject submissions, override AI, comment system
+Admin (Government Authority)	System-wide monitoring, final approval, credit issuance, audit logs
+Corporate Buyer	View carbon credits, purchase credits (mock), download ESG reports
+🌱 Core Workflow
+
+Fisherman uploads mangrove/seagrass images
+
+AI (Gemini Vision API) analyzes and verifies vegetation
+
+NGO reviewers validate submissions and add comments
+
+Admin/Gov gives final approval
+
+Blockchain-like registry stores verified data immutably
+
+Carbon credits are generated from verified restoration
+
+Corporates purchase credits as ESG / Net-Zero offsets
+
+Payments reach fishermen (mock for MVP)
